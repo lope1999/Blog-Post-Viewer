@@ -21,3 +21,13 @@ export const fetchPostById = async (id) => {
     throw error;
   }
 };
+
+export const fetchCommentsByPostId = async (postId) => {
+  try {
+    const response = await axios.get(`${API_URL}/${postId}/comments`);
+    return response.data;
+  } catch (error) {
+    console.error(`Error fetching comments for post with ID ${postId}:`, error);
+    throw error;
+  }
+};

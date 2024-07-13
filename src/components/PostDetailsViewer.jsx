@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { fetchPostById } from '../services/api';
+import { fetchPostById, fetchCommentsByPostId } from '../services/api';
 import Avatar from 'react-avatar';
 import { ArrowLeftIcon } from '@heroicons/react/solid';
+import PostComments from './PostComments';
 
 const PostDetailsViewer = ({ postId, onBack }) => {
   const [post, setPost] = useState(null);
+  const [comments, setComments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -13,6 +15,8 @@ const PostDetailsViewer = ({ postId, onBack }) => {
       try {
         const postDataResponse = await fetchPostById(postId);
         setPost(postDataResponse);
+        const commentsDataResponse = await fetchCommentsByPostId(postId);
+        setComments(commentsDataResponse);
       } catch (error) {
         setError(error.message);
       } finally {
@@ -21,6 +25,10 @@ const PostDetailsViewer = ({ postId, onBack }) => {
     };
     loadPost();
   }, [postId]);
+
+  const handleAddComment = (comment) => {
+    setComments([...comments, { body: comment }]);
+  };
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
@@ -38,6 +46,7 @@ const PostDetailsViewer = ({ postId, onBack }) => {
         </div>
         <p className="mb-4">{post.body}</p>
       </div>
+      <PostComments comments={comments} onAddComment={handleAddComment} />
     </div>
   );
 };
