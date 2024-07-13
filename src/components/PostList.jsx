@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { fetchPosts } from '../services/api';
 import Avatar from 'react-avatar';
 
-const PostList = () => {
+const PostList = ({ onSelectPost }) => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -32,7 +32,7 @@ const PostList = () => {
           <div
             key={post.id}
             className="bg-white shadow-lg rounded-lg p-6 cursor-pointer hover:bg-gray-100 transition"
-            onClick={() => console.log(post)}
+            onClick={() => onSelectPost(post.id)}
           >
             <div className="flex items-center mb-4">
               <Avatar name={post.title.charAt(0)} size="50" round={true} />
