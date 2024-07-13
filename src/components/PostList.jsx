@@ -5,7 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import Pagination from './Pagination';
 import { ClipLoader } from 'react-spinners';
 import ErrorPage from './ErrorPage';
-import errorIcon from '../assets/errorIcon.png'
+import errorIcon from '../assets/errorIcon.png';
+import SearchInput from './SearchInput';
 
 const PostList = () => {
   const [posts, setPosts] = useState([]);
@@ -13,9 +14,11 @@ const PostList = () => {
   const [error, setError] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(6);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [filteredPosts, setFilteredPosts] = useState([]);
   const navigate = useNavigate();
-  
-  // Load posts api
+
+  // Load posts from API
   useEffect(() => {
     const loadPosts = async () => {
       try {
@@ -30,10 +33,20 @@ const PostList = () => {
     loadPosts();
   }, []);
 
+  // Filter posts based on search query
+  useEffect(() => {
+    setFilteredPosts(
+      posts.filter((post) =>
+        post.title.toLowerCase().includes(searchQuery.toLowerCase())||
+      post.body.toLowerCase().includes(searchQuery.toLowerCase())
+      )
+    );
+  }, [searchQuery, posts]);
+
   // Get current posts
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+  const currentPosts = filteredPosts.slice(indexOfFirstPost, indexOfLastPost);
 
   // Change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
@@ -65,24 +78,30 @@ const PostList = () => {
   return (
     <div className="p-4">
       <h1 className="text-2xl font-bold mb-6 text-center">Blog Posts</h1>
+      <SearchInput searchQuery={searchQuery} setSearchQuery={setSearchQuery} searchText="Search posts..." />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {currentPosts.map((post) => (
-          <div
-            key={post.id}
-            className="bg-white shadow-lg rounded-lg p-6 cursor-pointer hover:bg-gray-100 transition"
-            onClick={() => navigate(`/post/${post.id}`)}
-          >
-            <div className="flex items-center mb-4">
-              <Avatar name={post.title.charAt(0)} size="50" round={true} />
-              <h2 className="text-l font-semibold ml-4 line-clamp-5">{post.title}</h2>
+        {currentPosts.length > 0 ? (
+          currentPosts.map((post) => (
+            <div
+              key={post.id}
+              className="bg-white shadow-lg rounded-lg p-6 cursor-pointer hover:bg-gray-100 transition"
+              onClick={() => navigate(`/post/${post.id}`)}
+              style={{ height: '250px' }}  // Fixed height for the post card
+            >
+              <div className="flex items-center mb-4">
+                <Avatar name={post.title.charAt(0)} size="50" round={true} />
+                <h2 className="text-l font-semibold ml-4 line-clamp-2">{post.title}</h2>
+              </div>
+              <p className="text-gray-700 line-clamp-3">{post.body.substring(0, 50)}...</p>
             </div>
-            <p className="text-gray-700 line-clamp-5">{post.body.substring(0, 50)}...</p>
-          </div>
-        ))}
+          ))
+        ) : (
+          <p className="text-center col-span-3">No posts found</p>
+        )}
       </div>
       <Pagination
         postsPerPage={postsPerPage}
-        totalPosts={posts.length}
+        totalPosts={filteredPosts.length}
         paginate={paginate}
         currentPage={currentPage}
       />
