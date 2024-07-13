@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { fetchPosts } from '../services/api';
 import Avatar from 'react-avatar';
 import { useNavigate } from 'react-router-dom';
-import Pagination from './Pagination';
+import Pagination from '../components/Pagination';
 import { ClipLoader } from 'react-spinners';
 import ErrorPage from './ErrorPage';
 import errorIcon from '../assets/errorIcon.png';
-import SearchInput from './SearchInput';
+import SearchInput from '../components/SearchInput';
 
 const PostList = () => {
   const [posts, setPosts] = useState([]);

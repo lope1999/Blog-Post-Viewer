@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { fetchPostById, fetchCommentsByPostId } from '../services/api';
 import Avatar from 'react-avatar';
 import { ArrowLeftIcon } from '@heroicons/react/solid';
-import PostComments from './PostComments';
+import PostComments from '../components/PostComments';
 import { ClipLoader } from 'react-spinners';
 import ErrorPage from './ErrorPage';
 import errorIcon from '../assets/errorIcon.png'
