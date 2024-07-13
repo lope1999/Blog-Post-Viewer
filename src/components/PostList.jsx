@@ -3,6 +3,9 @@ import { fetchPosts } from '../services/api';
 import Avatar from 'react-avatar';
 import { useNavigate } from 'react-router-dom';
 import Pagination from './Pagination';
+import { ClipLoader } from 'react-spinners';
+import ErrorPage from './ErrorPage';
+import errorIcon from '../assets/errorIcon.png'
 
 const PostList = () => {
   const [posts, setPosts] = useState([]);
@@ -35,8 +38,29 @@ const PostList = () => {
   // Change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error}</p>;
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <ClipLoader color={"#123abc"} loading={loading} size={50} />
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <ErrorPage 
+        errorTitle='Something went wrong'
+        errorMessage={error}
+        action={ <button 
+          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
+          onClick={() => window.location.reload()}
+        >
+          Retry
+        </button>}
+        errorIcon={errorIcon}
+      />
+    );
+  }
 
   return (
     <div className="p-4">

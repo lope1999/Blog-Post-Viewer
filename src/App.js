@@ -1,8 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Header from './components/Header';
 import PostList from './components/PostList';
 import PostDetailsViewer from './components/PostDetailsViewer';
-import Header from './components/Header';
+import ErrorPage from './components/ErrorPage'; 
 
 const App = () => {
   return (
@@ -12,6 +13,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<PostList />} />
           <Route path="/post/:postId" element={<PostDetailsViewer />} />
+          <Route path="*" element={<ErrorPage />} /> 
         </Routes>
       </div>
     </Router>
