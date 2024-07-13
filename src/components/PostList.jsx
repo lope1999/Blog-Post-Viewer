@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { fetchPosts } from '../services/api';
 import Avatar from 'react-avatar';
+import { useNavigate } from 'react-router-dom';
 
-const PostList = ({ onSelectPost }) => {
+const PostList = () => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const loadPosts = async () => {
@@ -32,7 +34,7 @@ const PostList = ({ onSelectPost }) => {
           <div
             key={post.id}
             className="bg-white shadow-lg rounded-lg p-6 cursor-pointer hover:bg-gray-100 transition"
-            onClick={() => onSelectPost(post.id)}
+            onClick={() => navigate(`/post/${post.id}`)}
           >
             <div className="flex items-center mb-4">
               <Avatar name={post.title.charAt(0)} size="50" round={true} />
