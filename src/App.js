@@ -1,11 +1,14 @@
-import React from 'react';
-import { fetchPosts } from './services/api';
+import React, { useState } from 'react';
+import Header from './components/Header';
 
-export default function App() {
-  // fetchPosts()
+const App = () => {
+
+
   return (
-    <h1 className="text-3xl font-bold underline">
-      Hello world!
-    </h1>
-  )
-}
+    <div className="container mx-auto p-4">
+      <Header />
+    </div>
+  );
+};
+
+export default App;
