@@ -4,6 +4,7 @@ import Header from './components/Header';
 import PostList from './components/PostList';
 import PostDetailsViewer from './components/PostDetailsViewer';
 import ErrorPage from './components/ErrorPage'; 
+import Footer from './components/Footer';
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
           <Route path="/post/:postId" element={<PostDetailsViewer />} />
           <Route path="*" element={<ErrorPage />} /> 
         </Routes>
+        <Footer/>
       </div>
     </Router>
   );
