@@ -25,10 +25,12 @@ const Pagination = ({ postsPerPage, totalPosts, paginate, currentPage }) => {
         </li>
         {pageNumbers.map((number) => (
           <li key={number}>
-            <button
+           <button
               onClick={() => paginate(number)}
-              className={`px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 ${
-                currentPage === number ? 'bg-blue-200' : ''
+              className={`px-3 py-2 leading-tight ${
+                currentPage === number
+                  ? 'text-white bg-blue-500 border-blue-500'
+                  : 'text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700'
               }`}
             >
               {number}
