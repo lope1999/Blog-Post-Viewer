@@ -37,8 +37,8 @@ const PostList = () => {
   useEffect(() => {
     setFilteredPosts(
       posts.filter((post) =>
-        post.title.toLowerCase().includes(searchQuery.toLowerCase())||
-      post.body.toLowerCase().includes(searchQuery.toLowerCase())
+        post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        post.body.toLowerCase().includes(searchQuery.toLowerCase())
       )
     );
   }, [searchQuery, posts]);
@@ -54,7 +54,7 @@ const PostList = () => {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-screen">
-        <ClipLoader color={"#123abc"} loading={loading} size={50} />
+        <ClipLoader color={"#123abc"} loading={loading} size={50} role="status" />
       </div>
     );
   }
@@ -86,7 +86,7 @@ const PostList = () => {
               key={post.id}
               className="bg-white shadow-lg rounded-lg p-6 cursor-pointer hover:bg-gray-100 transition"
               onClick={() => navigate(`/post/${post.id}`)}
-              style={{ height: '250px' }}  // Fixed height for the post card
+              style={{ height: '150px' }} 
             >
               <div className="flex items-center mb-4">
                 <Avatar name={post.title.charAt(0)} size="50" round={true} />
