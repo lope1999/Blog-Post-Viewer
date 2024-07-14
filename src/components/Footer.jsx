@@ -3,7 +3,7 @@ import { ExternalLinkIcon } from '@heroicons/react/outline';
 
 const Footer = () => {
   return (
-    <footer className="bg-blue-600 text-white p-4 mt-8">
+    <footer className="bg-blue-600 text-white p-4 fixed bottom-0 left-0 w-full">
       <div className="container mx-auto flex flex-col md:flex-row justify-between items-center">
         <div className="text-center md:text-left">
           <h2 className="text-xl font-bold">Blogger Blogger</h2>

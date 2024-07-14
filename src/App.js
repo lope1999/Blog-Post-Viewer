@@ -9,14 +9,16 @@ import Footer from './components/Footer';
 const App = () => {
   return (
     <Router>
-      <div className="container mx-auto p-4">
+      <div className="flex flex-col min-h-screen">
         <Header />
-        <Routes>
-          <Route path="/" element={<PostList />} />
-          <Route path="/post/:postId" element={<PostDetailsViewer />} />
-          <Route path="*" element={<ErrorPage />} /> 
-        </Routes>
-        <Footer/>
+        <main className="flex-grow container mx-auto p-4">
+          <Routes>
+            <Route path="/" element={<PostList />} />
+            <Route path="/post/:postId" element={<PostDetailsViewer />} />
+            <Route path="*" element={<ErrorPage />} /> 
+          </Routes>
+          <Footer/>
+        </main>
       </div>
     </Router>
   );
