@@ -16,6 +16,7 @@ const Pagination = ({ postsPerPage, totalPosts, paginate, currentPage }) => {
           <button
             onClick={() => paginate(currentPage - 1)}
             disabled={currentPage === 1}
+            aria-label="Previous"
             className={`px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 ${
               currentPage === 1 ? 'cursor-not-allowed opacity-50' : ''
             }`}
@@ -41,6 +42,7 @@ const Pagination = ({ postsPerPage, totalPosts, paginate, currentPage }) => {
           <button
             onClick={() => paginate(currentPage + 1)}
             disabled={currentPage === totalPages}
+            aria-label="Next"
             className={`px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 ${
               currentPage === totalPages ? 'cursor-not-allowed opacity-50' : ''
             }`}
