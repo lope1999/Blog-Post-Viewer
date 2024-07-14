@@ -44,7 +44,7 @@ const PostDetailsViewer = () => {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-screen">
-        <ClipLoader color={"#123abc"} loading={loading} size={50} />
+        <ClipLoader color={"#123abc"} loading={loading} size={50} role="status"/>
       </div>
     );
   }
