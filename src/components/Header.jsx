@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { MenuIcon, XIcon } from '@heroicons/react/outline'; 
+import { MenuIcon, XIcon } from '@heroicons/react/outline';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -26,7 +26,7 @@ const Header = () => {
           </ul>
         </nav>
         <div className="md:hidden">
-          <button onClick={toggleMenu}>
+          <button onClick={toggleMenu} aria-label="Toggle menu">
             {isMenuOpen ? (
               <XIcon className="w-6 h-6" />
             ) : (
@@ -36,7 +36,7 @@ const Header = () => {
         </div>
       </div>
       {isMenuOpen && (
-        <nav className="md:hidden">
+        <nav className="md:hidden" aria-label="mobile-menu">
           <ul className="flex flex-col space-y-4 mt-4">
             <li>
               <button className="bg-blue-700 w-full px-3 py-2 rounded hover:bg-blue-800 transition">Home</button>
