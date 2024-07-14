@@ -1,6 +1,10 @@
-# Blog Post Viewer: Blogger Blogger
+# Blogger Blogger: Blog Post Viewer
 
-This project is a blog post viewer that fetches and displays blog posts from the JSONPlaceholder API.
+This project is a blog post viewer that fetches and displays blog posts from the [JSONPlaceholder API.](https://jsonplaceholder.typicode.com/posts)
+
+## Preview
+
+![Blogger Blogger Snapshot](./src/assets//Blogger-Blooger-snapshot.png)
 
 ## Technologies Used
 
@@ -11,7 +15,7 @@ This project is a blog post viewer that fetches and displays blog posts from the
 
 1. Clone the repository:
     ```bash
-    git clone "https://github.com/lope1999/blog-post-viewer.git"
+    git clone https://github.com/lope1999/blog-post-viewer.git
     cd blog-post-viewer
     ```
 
@@ -34,12 +38,23 @@ This project is a blog post viewer that fetches and displays blog posts from the
 - Responsive design using Tailwind CSS.
 - Error handling and loading states for data fetching.
 
-## Bonus Features (Optional)
+## Bonus Features
 
 - Pagination for the list of blog posts.
 - Adding comments to blog posts and displaying them.
 - Implementing search functionality to filter blog posts by keywords.
 - Writing unit tests for the code.
+
+## Deployment
+
+The application is deployed on Vercel. You can view it live [here](https://blog-post-viewer.vercel.app/).
+
+## Testing
+
+Unit tests are written using Jest. To run the tests, use the following command:
+    ```bash
+    npm test
+    ```
 
 ## License
 
